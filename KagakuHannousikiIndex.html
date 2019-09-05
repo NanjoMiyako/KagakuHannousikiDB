@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+<title>テストページ6</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<!-- 広告位置 -->
+
+<form id="form1" name="form1">
+<select name="tabPages" style="font-size:20px; border:1px solid;">
+	<option value="tab_KagakuHannousikiKensaku">化学反応式検索</option>
+	<option value="tab_KagakuHanousikiTuika">化学反応式追加</option>
+	<option value="tab_KagakusikiTuika">化学式追加</option>
+	<option value="tab_DeleteKagakusiki">化学式削除</option>
+	<option value="tab_DataImportExport">データインポート・エクスポート</option>
+</select>
+<button type="button" id="selectTabPage1", style="margin-left:10px;" onclick="ChangeTab()">タブを選択</button>
+</form>
+
+<!-- 化学反応式検索 -->
+<div id="tab_KagakuHannousikiKensaku" class="tab">
+<form id="SearchForm">
+化学反応式検索<br>
+反応物/生成物<br>
+<input type="radio" name="Hannou_Seisei" value="0" checked>反応物
+<input type="radio" name="Hannou_Seisei" value="1" >生成物
+<input type="radio" name="Hannou_Seisei" value="2" >反応物と生成物
+<br>
+反応タイプ
+<select id="HannouTypeOnKagakuHannousikiKensakuTab" name="HannouTypeOnKagakuHannousikiKensakuTab">
+	<option value="All">全般</option>
+</select>
+</form>
+
+<br>
+化学物質名:
+<input type:"text" id="KagakusikiOnKagakuHannousikiKensakuTab">
+<br>
+<button type="button" id="SearchBtnOnKagakuHannousikiKensakuTab" onclick="SearchOnKagakuHannousikiKensakuTab()">
+検索
+</button>
+
+<hr>
+<div id="searchResultOnKagakuHannousikiKensakuTab">
+</div>
+
+</div>
+
+<!-- 化学反応式追加 -->
+<div id="tab_KagakuHanousikiTuika" class="tab">
+化学反応式追加<br>
+　　　　係数　　反応物化学式<br>
+
+反応物1
+<input type:"text" id="Hannou_Keisu1_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Hannou_Butu1_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+反応物2
+<input type:"text" id="Hannou_Keisu2_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Hannou_Butu2_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+反応物3
+<input type:"text" id="Hannou_Keisu3_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Hannou_Butu3_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+反応物4
+<input type:"text" id="Hannou_Keisu4_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Hannou_Butu4_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+反応物5
+<input type:"text" id="Hannou_Keisu5_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Hannou_Butu5_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+<hr>
+　　　　係数　　生成物化学式<br>
+
+生成物1
+<input type:"text" id="Seisei_Keisu1_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Seisei_Butu1_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+生成物2
+<input type:"text" id="Seisei_Keisu2_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Seisei_Butu2_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+生成物3
+<input type:"text" id="Seisei_Keisu3_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Seisei_Butu3_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+生成物4
+<input type:"text" id="Seisei_Keisu4_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Seisei_Butu4_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+生成物5
+<input type:"text" id="Seisei_Keisu5_OnKagakuHanousikiTuikaTab" size="2" maxLength = "2">
+<input type:"text" id="Seisei_Butu5_OnKagakuHanousikiTuikaTab" style="margin-left:10px;"><br>
+
+<hr>
+<button type="button" id="RegistBtnOnKagakuHanousikiTuikaTab" onclick="RegistOnKagakuHanousikiTuikaTab()">
+登録
+</button>
+</div>
+
+<!-- 化学式追加 -->
+<div id="tab_KagakusikiTuika" class="tab">
+化学式追加<br>
+化学式名:
+<input type:"text" id="Kagakusiki_OnKagakusikiTuikaTab"><br>
+<br>
+
+別名1:
+<input type:"text" id="Alias1_OnKagakusikiTuikaTab"><br>
+別名2:
+<input type:"text" id="Alias2_OnKagakusikiTuikaTab"><br>
+別名3:
+<input type:"text" id="Alias3_OnKagakusikiTuikaTab"><br>
+別名4:
+<input type:"text" id="Alias4_OnKagakusikiTuikaTab"><br>
+別名5:
+<input type:"text" id="Alias5_OnKagakusikiTuikaTab"><br>
+<hr>
+<button type="button" id="RegistBtnOnKagakusikiTuikaTab" onclick="RegistOnKagakusikiTuikaTab()">
+登録
+</button>
+</div>
+
+<!-- 化学式追加 -->
+<div id="tab_DeleteKagakusiki" class="tab">
+化学式削除<br>
+化学式名:
+<input type:"text" id="Kagakusiki_OnDeleteKagakusikiTab"><br>
+<br>
+<hr>
+<button type="button" id="DeleteBtnOnKagakusikiTuikaTab" onclick="DeleteOnDeleteKagakusikiTab()">
+削除
+</button>
+</div>
+
+
+<!-- データインポート・エクスポートタブ -->
+<div id="tab_DataImportExport" class="tab">
+データインポート・エクスポート<br>
+・インポート<br>
+<span id="ImportKagakusikiFlgOnDataImportExportTab"></span><br>
+<span id="ImportKagakuHannousikiFlgOnDataImportExportTab"></span><br>
+インポートファイルを選択:<br>
+<input type="file" id="fileOnDataImportExportTab"><br>
+
+<button type="button" id="ImportKagakuSikiOnDataImportExportTab" style="margin-top:10px;" onclick="ImportKagakuSikiOnDataImportExportTab()">
+化学式データをインポート
+</button><br>
+
+<button type="button" id="ImportHannouSikiOnDataImportExportTab" style="margin-top:10px;" onclick="ImportHannouSikiOnDataImportExportTab()">
+化学反応式データをインポート
+</button><br>
+<hr>
+・エクスポート<br>
+<button id="Download1OnDataImportExportTab" style="margin-top:10px;" onclick="DownloadKagakusikiData()">化学式データをダウンロード</button>
+<br>
+<button id="Download2OnDataImportExportTab" style="margin-top:10px;" onclick="DownloadKagakuHannousikiData()">化学反応式データをダウンロード</button>
+<br>
+
+</div>
+
+
+
+<script type="text/javascript" src="KagakuHannousikiJS.js" async defer></script>
+
+</body>
+
+</html>
