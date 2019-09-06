@@ -128,6 +128,7 @@ function DisplaySearchResult(kagakuHannousikiList){
 	var kagakusikiList;
 	var keisuList;
 	var hannouType;
+	var bikou;
 	var gensoList;
 	
 	
@@ -142,6 +143,7 @@ function DisplaySearchResult(kagakuHannousikiList){
 		kagakusikiList = kagakuHannousikiList[i].HannouButuList;
 		keisuList = kagakuHannousikiList[i].HannouKeisuList;
 		hannouType = kagakuHannousikiList[i].HannouType;
+		bikou = kagakuHannousikiList[i].Bikou;
 		for(var j=0; j<kagakusikiList.length; j++){
 			if(j != 0){
 				spanElem = document.createElement("span");
@@ -219,10 +221,21 @@ function DisplaySearchResult(kagakuHannousikiList){
 		brElem = document.createElement("br");
 		divElem.appendChild(brElem);
 		
-		
+		if(bikou != ""){
+			spanElem = document.createElement("span");
+			spanElem.innerHTML = "*";
+			spanElem.innerHTML += bikou;
+			divElem.appendChild(spanElem);
+			
+			brElem = document.createElement("br");
+			divElem.appendChild(brElem);
+		 }
+		 
 		spanElem  = document.createElement("span");
 		spanElem.innerHTML = "*この化学反応式を";
 		divElem.appendChild(spanElem);
+
+		
 		
 		btnElem = document.createElement("button");
 		btnElem.innerText = "削除";
@@ -347,7 +360,8 @@ function RegistOnKagakuHanousikiTuikaTab(){
 	var SeiseiButuList = [];
 	var HannouKeisuList = [];
 	var SeiseiKeisuList = [];
-	var HannouType = [];
+	var HannouType = "";
+	var Bikou;
 	
 	var val1;
 	var val2;
@@ -433,8 +447,12 @@ function RegistOnKagakuHanousikiTuikaTab(){
 	AddHannouType(val1);
 	HannouType = val1;
 	
+	//備考
+	Bikou = document.getElementById("BikouOnKagakuHanousikiTuikaTab").value;
+	
+	
 	RegistKagakuHannousiki(HannouButuList, SeiseiButuList,
- HannouKeisuList, SeiseiKeisuList, HannouType);
+ HannouKeisuList, SeiseiKeisuList, HannouType, Bikou);
 
 }
 
@@ -577,7 +595,7 @@ function RegistKagakusiki(mainName, aliasList){
 }
 
 function RegistKagakuHannousiki(HannouButuList, SeiseiButuList,
- HannouKeisuList, SeiseiKeisuList, HannouType){
+ HannouKeisuList, SeiseiKeisuList, HannouType, Bikou){
 	var RegistHannouButuList = [];
 	var RegistSeiseiButuList = [];
 	var newKagakuHannousiki;
@@ -601,7 +619,7 @@ function RegistKagakuHannousiki(HannouButuList, SeiseiButuList,
 	}
 	
 	newKagakuHannousiki = new KagakuHannousiki(RegistHannouButuList, 
-	RegistSeiseiButuList, HannouKeisuList, SeiseiKeisuList, HannouType);
+	RegistSeiseiButuList, HannouKeisuList, SeiseiKeisuList, HannouType, Bikou);
 	g_KagakuHannousikiList.push(newKagakuHannousiki);
 	
 	alert("化学反応式を登録しました");
@@ -728,7 +746,7 @@ function Kagakusiki(mainName, aliasList){
 }
 //化学反応式のコンストラクタ
 function KagakuHannousiki(HannouButuList, SeiseiButuList, 
-HannouKeisuList, SeiseiKeisuList, HannouType){
+HannouKeisuList, SeiseiKeisuList, HannouType, Bikou){
 	g_KagakuHannousikiMaxId++;
 	this.id = g_KagakuHannousikiMaxId;
 	this.HannouButuList = HannouButuList;
@@ -736,6 +754,7 @@ HannouKeisuList, SeiseiKeisuList, HannouType){
 	this.HannouKeisuList = HannouKeisuList;
 	this.SeiseiKeisuList = SeiseiKeisuList;
 	this.HannouType = HannouType;
+	this.Bikou = Bikou
 	
 	AddHannouType(HannouType);
 }
